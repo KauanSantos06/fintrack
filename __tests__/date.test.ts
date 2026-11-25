@@ -1,0 +1,4 @@
+import { addDaysISO, brToISO, dayLabel, isoToBr, maskBrDate, monthLabel, monthRange, shiftMonth } from '@/utils/date';
+describe('conversão de datas', () => { it('converte ISO para BR e de volta', () => { expect(isoToBr('2026-09-19')).toBe('19/09/2026'); expect(brToISO('19/09/2026')).toBe('2026-09-19'); }); it('rejeita datas inexistentes', () => { expect(brToISO('31/02/2026')).toBeNull(); }); it('soma dias atravessando o mês', () => { expect(addDaysISO('2026-03-01', -1)).toBe('2026-02-28'); }); });
+describe('meses', () => { it('avança e volta atravessando o ano', () => { expect(shiftMonth({ year: 2026, month: 12 }, 1)).toEqual({ year: 2027, month: 1 }); }); });
+describe('dayLabel', () => { it('usa Hoje, Ontem ou dd/mm', () => { expect(dayLabel('2026-09-19', '2026-09-19')).toBe('Hoje'); expect(dayLabel('2026-09-18', '2026-09-19')).toBe('Ontem'); }); });
